@@ -1,0 +1,19 @@
+name: Deterministic workflow checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  core:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check workflow core syntax
+        run: node --check workflow-core.js
+      - name: Run deterministic state and binary verdict tests
+        run: node tests/test_workflow.js
