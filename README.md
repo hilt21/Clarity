@@ -53,7 +53,12 @@ workflow-core.js (pure state reducer)
 
 ```sh
 node tests/test_workflow.js
+node tests/test_static_contract.js
 ```
+
+> 注意：`tests/browser_smoke.py` 为适配沙箱环境，会将外部工作流脚本注入为内联脚本，不能证明正常加载路径的 CSP 配置正确。加载路径检查见 `test_static_contract.js`；真实浏览器静态服务环境仍需单独验收。
+
+当前验证基线与已知风险：[docs/VERIFICATION-2026-11-16.md](docs/VERIFICATION-2026-11-16.md)。
 
 此处包含 19 个以上状态与判断接口的单元检查。完整本地 UI 验证另使用 Chromium / Playwright，已执行 40 项界面行为检查，覆盖流程、模拟答案、未知、撤销、导出、XSS 文字转义和无外部网络请求。后续应在 CI 加入浏览器回归测试。
 
