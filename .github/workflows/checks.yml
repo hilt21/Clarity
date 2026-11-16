@@ -17,3 +17,5 @@ jobs:
         run: node --check workflow-core.js
       - name: Run deterministic state and binary verdict tests
         run: node tests/test_workflow.js
+      - name: Verify offline CSP and script loader
+        run: node tests/test_static_contract.js
